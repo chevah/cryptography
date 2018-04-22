@@ -44,7 +44,7 @@ with open(os.path.join(src_dir, "cryptography", "__about__.py")) as f:
 VECTORS_DEPENDENCY = "cryptography_vectors=={0}".format(about['__version__'])
 
 # `setup_requirements` must be kept in sync with `pyproject.toml`
-setup_requirements = []
+setup_requirements = ["cffi>=1.7,!=1.11.3"]
 
 if platform.python_implementation() == "PyPy":
     if sys.pypy_version_info < (5, 3):
@@ -52,8 +52,6 @@ if platform.python_implementation() == "PyPy":
             "cryptography is not compatible with PyPy < 5.3. Please upgrade "
             "PyPy to use this library."
         )
-else:
-    setup_requirements.append("cffi>=1.7,!=1.11.3")
 
 test_requirements = [
     "pytest>=3.2.1,!=3.3.0",
